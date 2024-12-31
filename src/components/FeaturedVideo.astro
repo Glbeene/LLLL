@@ -1,0 +1,82 @@
+---
+const videos = [
+  {
+    title: "Coming Soon: Limitless Livin'",
+    description: "Get ready for a real look into marriage.",
+    thumbnail: "/images/20191129_073124.jpg",
+    url: "https://youtu.be/BcINiPfkbBE"
+  },
+  {
+    title: "Don't Just Go Through The Motions",
+    description: "Learn the secrets to truly becoming ONE.",
+    thumbnail: "/images/video-thumbnail.jpg",
+    url: "https://youtu.be/kNLtxxwCrTE"
+  },
+  {
+    title: "It Really Does Get Better",
+    description: "Discover how to build a lasting marriage from day one.",
+    thumbnail: "/images/OMA_4061.jpg", 
+    url: "https://youtu.be/ViSYPryGwXM"
+  }
+];
+---
+<section class="py-20 bg-gray-50 relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute right-0 top-0 w-96 h-96 bg-white rounded-full translate-x-1/2 -translate-y-1/2"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <h2 class="text-4xl font-display font-bold text-center mb-16">Featured Promo Videos</h2>
+    
+    <!-- Video Grid -->
+    <div class="grid lg:grid-cols-3 gap-8">
+      {videos.map((video, index) => (
+        <div class="relative">
+          <div class="absolute inset-0 bg-gray-200 rounded-lg transform rotate-2"></div>
+          <div class="relative bg-white p-6 rounded-lg shadow-xl">
+            <a 
+              href={video.url}
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="block relative group"
+            >
+              <div class="relative w-full pb-[56.25%] overflow-hidden rounded-lg">
+                <img 
+                  src={video.thumbnail}
+                  alt={`${video.title} Thumbnail`}
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="mt-4 space-y-2">
+              <h3 class="text-xl font-display font-bold">{video.title}</h3>
+              <p class="text-gray-600">{video.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Subscribe CTA -->
+    <div class="mt-12 text-center">
+      <a 
+        href="https://www.youtube.com/@LimitlessLivinMarriage" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center text-primary font-medium hover:text-gray-800 transition"
+      >
+        Subscribe on YouTube
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

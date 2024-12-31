@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  date: string;
+  excerpt: string;
+  href: string;
+}
+
+const { title, date, excerpt, href } = Astro.props;
+---
+
+<article class="bg-white/90 backdrop-blur-sm rounded-lg shadow-xl p-6 sm:p-8 mb-6 sm:mb-8">
+  <div class="space-y-4">
+    <div class="mb-4">
+      <h2 class="text-xl sm:text-2xl font-display font-bold">
+        <a href={href} class="hover:text-gray-600 transition-colors">
+          {title}
+        </a>
+      </h2>
+      <time class="text-sm text-gray-500">{date}</time>
+    </div>
+    <p class="text-gray-700 text-sm sm:text-base">{excerpt}</p>
+    <div>
+      <a 
+        href={href} 
+        class="inline-flex items-center text-primary font-medium hover:text-gray-800 transition text-sm sm:text-base"
+      >
+        Read More
+        <svg class="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

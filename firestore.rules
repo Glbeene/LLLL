@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isValidEmail(email) {
+      return email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
+    }
+    
+    function isValidDate(date) {
+      return date is timestamp &&
+             date.seconds > 0 &&
+             date.seconds < 8640000000000;
+    }
+
+    // Allow public read access to all collections
+    match /{document=**} {
+      allow read: if true;
+    }
+    
+    // Messages collection - validate contact form submissions
+    match /messages/{messageId} {
+      allow write: if request.resource.data.keys().hasAll(['name', 'email', 'message', 'createdAt']) &&
+                   request.resource.data.name is string &&
+                   request.resource.data.name.size() > 0 &&
+                   request.resource.data.name.size() <= 100 &&
+                   request.resource.data.email is string &&
+                   isValidEmail(request.resource.data.email) &&
+                   request.resource.data.message is string &&
+                   request.resource.data.message.size() > 0 &&
+                   request.resource.data.message.size() <= 2000 &&
+                   isValidDate(request.resource.data.createdAt);
+    }
+    
+    // Subscribers collection - validate newsletter subscriptions
+    match /subscribers/{subscriberId} {
+      allow write: if request.resource.data.keys().hasAll(['email', 'subscribedAt']) &&
+                   request.resource.data.email is string &&
+                   isValidEmail(request.resource.data.email) &&
+                   isValidDate(request.resource.data.subscribedAt);
+    }
+    
+    // Posts collection - only allow admin writes through backend
+    match /posts/{postId} {
+      allow write: if false;
+    }
+  }
+}

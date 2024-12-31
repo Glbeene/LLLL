@@ -1,0 +1,63 @@
+---
+---
+<script>
+function runResponsivenessTests() {
+  // Navigation Tests
+  console.log('Testing Navigation...');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuButton = document.getElementById('mobileMenuButton');
+  
+  if (mobileMenu && mobileMenuButton) {
+    console.log('✓ Mobile menu elements found');
+  } else {
+    console.error('✗ Mobile menu elements missing');
+  }
+
+  // Image Tests
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.complete) {
+      if (img.naturalWidth === 0) {
+        console.error(`✗ Image failed to load: ${img.src}`);
+      } else {
+        console.log(`✓ Image loaded successfully: ${img.src}`);
+      }
+    }
+  });
+
+  // Form Tests
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    const inputs = form.querySelectorAll('input, textarea, button');
+    inputs.forEach(input => {
+      const styles = window.getComputedStyle(input);
+      const height = parseFloat(styles.height);
+      if (height < 44) { // Minimum touch target size
+        console.warn(`⚠ Input element too small for touch: ${input.id || input.name}`);
+      }
+    });
+  });
+
+  // Layout Tests
+  const viewport = {
+    width: window.innerWidth,
+    height: window.innerHeight
+  };
+  
+  if (document.documentElement.scrollWidth > viewport.width) {
+    console.error('✗ Horizontal scrolling detected');
+  } else {
+    console.log('✓ No horizontal scrolling');
+  }
+}
+
+// Run tests when page loads
+window.addEventListener('load', runResponsivenessTests);
+
+// Run tests when viewport size changes
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(runResponsivenessTests, 250);
+});
+</script>

@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getBlogPostBySlug } from '../../lib/api/blog';
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'journey-begins' } },
+    { params: { slug: 'strong-foundations' } },
+    { params: { slug: 'communication-connection' } }
+  ];
+}
+
+const { slug } = Astro.params;
+const post = await getBlogPostBySlug(slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${post.title} - Limitless Livin'`}>
+  <div class="min-h-screen relative pt-20">
+    <!-- Left side image -->
+    <div class="fixed left-0 top-0 w-1/4 h-full z-0 hidden lg:block">
+      <img 
+        src="/images/blog-left-bg.jpg" 
+        alt="" 
+        class="w-full h-full object-cover grayscale brightness-75"
+      />
+      <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+
+    <!-- Right side image -->
+    <div class="fixed right-0 top-0 w-1/4 h-full z-0 hidden lg:block">
+      <img 
+        src="/images/blog-right-bg.jpg" 
+        alt="" 
+        class="w-full h-full object-cover grayscale brightness-75"
+      />
+      <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <article class="py-12 sm:py-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-white/90 backdrop-blur-sm rounded-lg shadow-xl p-6 sm:p-8">
+            <header class="mb-8">
+              <h1 class="text-3xl sm:text-4xl font-display font-bold mb-4">{post.title}</h1>
+              <time class="text-gray-500">{post.date}</time>
+            </header>
+            <div class="prose prose-lg max-w-none">
+              {post.content}
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title="Episodes - Limitless Livin'">
+  <div class="pt-20 relative min-h-screen">
+    <!-- Background image with overlay -->
+    <div class="fixed inset-0 z-0">
+      <img 
+        src="/images/episodes-bg.jpg" 
+        alt="Background" 
+        class="w-full h-full object-cover object-[center_20%] grayscale brightness-110"
+      />
+      <div class="absolute inset-0 bg-black/10"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10">
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl font-display font-bold text-center mb-12 text-white">Our Episodes</h1>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-xl">
+              <p class="text-gray-800 text-center">Episodes coming soon in 2025!</p>
+              <p class="text-sm text-gray-600 mt-2 text-center">Stay tuned for our upcoming content.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

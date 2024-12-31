@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<Layout title="Contact Us - Limitless Livin'">
+  <div class="pt-20 relative min-h-screen">
+    <!-- Background image with overlay -->
+    <div class="fixed inset-0 z-0">
+      <img 
+        src="/images/couple-bg-2.jpg" 
+        alt="Background" 
+        class="w-full h-full object-cover opacity-[0.33] grayscale"
+      />
+    </div>
+
+    <div class="relative z-10">
+      <section class="py-20 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div class="text-center mb-16">
+            <p class="text-lg font-semibold text-black max-w-2xl mx-auto">
+              Your relationship questions matter to us. Share your experiences, challenges, or curiosities about love and marriage, and we'll address them thoughtfully in our upcoming podcasts and blog posts. Together, we can create meaningful conversations that help couples thrive.
+            </p>
+          </div>
+
+          <div class="mb-20">
+            <h2 class="text-3xl font-display font-bold text-center mb-6">Speaking Engagements</h2>
+            <div class="max-w-2xl mx-auto">
+              <p class="text-lg font-semibold text-black mb-8 text-center">
+                We're passionate about sharing our message of limitless love with communities across the world. We'd love to bring our experience and insights to your group.
+              </p>
+              <div class="bg-white/30 backdrop-blur-sm rounded-lg shadow-xl p-8 relative">
+                <h3 class="text-2xl font-display font-bold text-center mb-8">Book Us For Your Event</h3>
+                <h3 class="text-xl font-bold mb-4">Available For:</h3>
+                <ul class="space-y-3 text-black font-semibold">
+                  <li class="flex items-center">
+                    <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Church Events & Marriage Ministries
+                  </li>
+                  <li class="flex items-center">
+                    <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Marriage Retreats & Workshops
+                  </li>
+                  <li class="flex items-center">
+                    <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Community & Group Sessions
+                  </li>
+                  <li class="flex items-center">
+                    <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Relationship Coaching Sessions
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h1 class="text-4xl font-display font-bold text-center mb-12">Get in Touch</h1>
+          <div class="bg-white/90 backdrop-blur-sm rounded-lg shadow-xl p-8">
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>
