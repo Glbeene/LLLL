@@ -43,7 +43,7 @@
 </form>
 
 <script>
-  import { supabase } from '../lib/supabase/client';
+  import { createMessage } from '../lib/supabase/queries/messages';
 
   const form = document.getElementById('contactForm') as HTMLFormElement;
   const statusDiv = document.getElementById('formStatus');
@@ -65,16 +65,7 @@
         submitButton.disabled = true;
         submitButton.textContent = 'Sending...';
 
-        // Insert directly using Supabase client
-        const { error } = await supabase
-          .from('messages')
-          .insert([{
-            name: data.name,
-            email: data.email,
-            message: data.message
-          }]);
-
-        if (error) throw error;
+        await createMessage(data);
 
         // Show success message
         statusDiv.textContent = 'Message sent successfully!';
