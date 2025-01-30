@@ -1,19 +1,17 @@
 import { supabase } from '../client';
-import type { MessageInput } from '../../types/messages';
+import type { Database } from '../types/database';
 
-export async function createMessage(input: MessageInput): Promise<string> {
-  // Use the database function that handles both message and subscriber
+type Message = Database['public']['Tables']['messages']['Insert'];
+
+export async function createMessage(message: Message): Promise<string> {
   const { data, error } = await supabase
-    .rpc('handle_message_and_subscriber', {
-      p_name: input.name,
-      p_email: input.email, 
-      p_message: input.message
-    });
+    .from('messages')
+    .insert([message])
+    .select('id')
+    .single();
 
-  if (error) {
-    console.error('Error creating message:', error);
-    throw new Error('Failed to send message');
-  }
-
-  return data;
+  if (error) throw error;
+  if (!data) throw new Error('No data returned from insert');
+  
+  return data.id;
 }

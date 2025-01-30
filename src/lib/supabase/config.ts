@@ -4,10 +4,7 @@ const requiredEnvVars = ['PUBLIC_SUPABASE_URL', 'PUBLIC_SUPABASE_ANON_KEY'] as c
 // Check for missing environment variables
 const missingVars = requiredEnvVars.filter(name => !import.meta.env[name]);
 if (missingVars.length > 0) {
-  throw new Error(
-    `Missing required Supabase environment variables: ${missingVars.join(', ')}\n` +
-    'Please click the "Connect to Supabase" button to set up your environment.'
-  );
+  console.error(`Missing Supabase environment variables: ${missingVars.join(', ')}`);
 }
 
 export const supabaseConfig = {

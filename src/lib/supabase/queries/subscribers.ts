@@ -1,35 +1,23 @@
-import { supabase } from '../client';
+import { supabase } from '../client'
+import type { Database } from '../types/database'
 
-export async function checkExistingSubscriber(email: string): Promise<boolean> {
-  const { data, error } = await supabase
+type Subscriber = Database['public']['Tables']['subscribers']['Insert']
+
+export async function addSubscriber(email: string): Promise<string | null> {
+  const { data: existing } = await supabase
     .from('subscribers')
     .select('id')
     .eq('email', email)
-    .maybeSingle();
+    .single()
 
-  if (error) {
-    console.error('Error checking subscriber:', error);
-    return false;
-  }
+  if (existing) return null
 
-  return !!data;
-}
-
-export async function addSubscriber(email: string): Promise<string | null> {
   const { data, error } = await supabase
     .from('subscribers')
     .insert([{ email }])
     .select('id')
-    .single();
+    .single()
 
-  if (error) {
-    // If error is duplicate key, subscriber already exists
-    if (error.code === '23505') {
-      return null;
-    }
-    console.error('Error adding subscriber:', error);
-    throw new Error('Failed to add subscriber');
-  }
-
-  return data?.id || null;
+  if (error) throw error
+  return data.id
 }
