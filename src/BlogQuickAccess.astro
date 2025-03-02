@@ -1,0 +1,21 @@
+---
+interface BlogPost {
+  title: string;
+  href: string;
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="max-w-xs mx-auto mb-8">
+  <select 
+    id="blogQuickAccess" 
+    class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary bg-white/90 backdrop-blur-sm"
+    onchange="if (this.value) window.location.href = this.value"
+  >
+    <option value="">Quick Access to Posts</option>
+    {posts.map((post: BlogPost) => (
+      <option value={post.href}>{post.title}</option>
+    ))}
+  </select>
+</div>

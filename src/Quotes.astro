@@ -1,0 +1,26 @@
+---
+const quotes = [
+  {
+    text: "A woman will know when a guy is really into her. She will know, and if she doesn't, she's lying to herself.",
+    author: "Garrett"
+  },
+  {
+    text: "Listen to understand and let the other one know when you don't understand something, you have to communicate.",
+    author: "Jackie"
+  }
+];
+---
+<section class="py-20 bg-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      {quotes.map(quote => (
+        <div class="text-center">
+          <blockquote class="text-xl md:text-2xl font-display italic text-white">
+            "{quote.text}"
+          </blockquote>
+          <cite class="mt-4 block text-lg text-gray-400">— {quote.author}</cite>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

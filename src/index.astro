@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeaturedVideo from '../components/FeaturedVideo.astro';
+import Quotes from '../components/Quotes.astro';
+import About from '../components/About.astro';
+import LatestEpisodes from '../components/LatestEpisodes.astro';
+import MobileTest from '../components/MobileTest.astro';
+
+const isDev = import.meta.env.DEV;
+---
+
+<Layout title="Limitless Livin' - Live, Love, and Laugh Limitlessly">
+  <Hero />
+  <FeaturedVideo />
+  <About />
+  <Quotes />
+  <LatestEpisodes />
+  {isDev && <MobileTest />}
+</Layout>
